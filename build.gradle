@@ -30,3 +30,12 @@ tasks.test {
         events("passed", "skipped", "failed")
     }
 }
+
+jar {
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes(
+                'Main-Class': 'pl.com.mzubala.cronexpressionsparser.ParserApp'
+        )
+    }
+}
